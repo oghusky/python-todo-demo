@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Todolist</title>
+</head>
+
+<body>
+    <form action="/" method="POST">
+        <input name="addTodo" id="addTodo" placeholder="Add Todo Text" />
+        <button>SUBMIT</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        var form = document.querySelector("form");
+        var input = document.querySelector("#addTodo");
+        var button = document.querySelector("button");
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+            $.ajax({
+                url: "/",
+                method: "POST",
+                data: {
+                    todoText: input.value
+                },
+                success: res => {
+                    console.log(res);
+                },
+                error: err => console.error(err)
+            })
+        })
+    </script>
+</body>
+
+</html>
