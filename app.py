@@ -1,8 +1,9 @@
 from flask import Flask, render_template, jsonify, request
-# FmysJiwa6dE7hCoh
 import pymongo
+import os
 client = pymongo.MongoClient(
-    "mongodb+srv://ptd_admin:<password>@cluster0.cmnzcow.mongodb.net/?retryWrites=true&w=majority")
+    os.getenv("MONGO_URI", "mongodb://localhost:27017"))
+#
 db = client.todolist
 
 app = Flask(__name__)
